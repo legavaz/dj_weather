@@ -25,20 +25,22 @@
         <div class="row">
 
             <div class="col-5 offset-1">
-                <form action="">
+                <form action="" method="POST">
+                   {% csrf_token %}
                     <label for="city"> Город </label>
-                    <input type="text" class="form-control" name="city" id="city" placeholder="Введите город">
-                    <input type="submit" value="Узнать" name="send" сlass="btn">
+                   {{ form.name }}                    
+                    <input type="submit" name="send" value="Узнать" сlass="mt-2 btn btn-danger">
                 </form>
             </div>
 
             <div class="col-4 offset-1">
                 <h1>Информация:</h1>
+                <!-- цикл расстановки значений -->
+                {%for info in all_info%}
                 <div class="alert alert-info">
                     <div class="row">
                         <div class="col-9">
-                            <b>Город</b> {{info.city_name}}<br>
-                            <b>Температура</b> {{info.temp}}<sup>o</sup> <br>
+                            <b>Город:</b> {{info.city_name}} t:{{info.temp}} <sup>o</sup> <br>                            
                         </div>
                         <div class="col-10 offset-1">
                             <img src="http://openweathermap.org/img/w/{{info.icon}}.png" alt="фото погоды"
@@ -46,6 +48,8 @@
                         </div>
                     </div>
                 </div>
+                {%endfor%}
+
             </div>
         </div>
     </div>
