@@ -13,7 +13,8 @@ def index(request):
 
     if request.method == "POST":
         form = CityForm(request.POST)
-        print(request.POST)
+        print('request',request.POST)
+        print('class',form)
         form.save()
 
     # Очистим форму    
